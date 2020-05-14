@@ -20,6 +20,7 @@ class TeamBuilder:
         self.team = []
         self.points = getPoints()
         self.player_cost = playerCost()
+        self.ability_costs = totalAttributeCost()
         self.tiers = getTiers()
         self.offense_positions = getOffensePositions()
         self.defense_positions = getDefensePositions()
@@ -80,17 +81,31 @@ class TeamBuilder:
     def _abilityValidation(self, tier, abilities):
         validated = True
 
-        ability_number = 1
+        if len(abilities) == 1:
+            cost = self.ability_costs[1][tier]
+
+        if len(abilities) == 2:
+            cost = self.ability_costs[1][tier] + self.ability_costs[2][tier]
+
+        if len(abilities) == 3:
+            cost = self.ability_costs[1][tier] + self.ability_costs[2][tier] + self.ability_costs[3][tier]
+
+        if len(abilities) == 4:
+            cost = self.ability_costs[1][tier] + self.ability_costs[2][tier] + self.ability_costs[3][tier] + self.ability_costs[4][tier]
+
+        if self.points['total'] - cost > 0 or self.points[tier] - cost > 0:
+            validated = False
+            return validated
 
         for ability in abilities:
-            if self.player_attributes[ability] > 4:
-                cost = totalAttributeCost[ability_number][tier]
+            if self.player_attributes[ability] < 3:
+                validated = False
+                return validated
 
-                if self.points['total'] - cost > 0 or self.points[tier] - cost > 0:
-                    validated = False
+        self.points['total'] -= cost
+        self.points[tier] -= cost
 
-
-
+        return validated
 
     def _playerBuilder(self, side, tier, position):
         while True:
