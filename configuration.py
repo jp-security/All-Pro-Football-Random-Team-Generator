@@ -121,8 +121,8 @@ def totalAttributeCost():
 
     return costs
 
-def athleticAttributes():
-    abilities = {
+def abilityCount():
+    count = {
         'Quick Feet': 0,
         'Speed Burner': 0,
         'Break Away Burst': 0,
@@ -130,21 +130,9 @@ def athleticAttributes():
         'Durability Bonus': 0,
         'Hops': 0,
         'Stamina Bonus': 0,
-        'Strength Bonus': 0
-    }
-
-    return abilities
-
-def generalIntangibles():
-    abilities = {
+        'Strength Bonus': 0,
         'Clutch': 0,
-        'Leadership Bonus': 0
-    }
-
-    return abilities
-
-def quarterBackAttributes():
-    abilities = {
+        'Leadership Bonus': 0,
         '4th Quarter Comeback': 0,
         'Deception': 0,
         'Laser Arm': 0,
@@ -153,21 +141,9 @@ def quarterBackAttributes():
         'Pocket Presence': 0,
         'QB Evade': 0,        
         'Scrambler': 0,
-        'Tough as Nails': 0
-    }
-
-    return abilities
-
-def quarterBackRestrictedAttributes():
-    abilities = {
-        'Quick Release': 0,
-        'Rocket Arm': 0
-    }
-
-    return abilities
-
-def runningBackAttributes():
-    abilities = {
+        'Tough as Nails': 0,
+         'Quick Release': 0,
+        'Rocket Arm': 0,
         'Ankle Breaker': 0,
         'Arm of Steel': 0,
         'Battering Ram': 0,                
@@ -179,18 +155,8 @@ def runningBackAttributes():
         'Scissor Kick': 0,
         'Secure Ball Bonus': 0,        
         'Stop on a Dime': 0,
-    }
-
-    return abilities
-
-def runningBackRestrictedAttributes():
-    abilities = {
         'Branching Tackles': 0,
-        'Work Horse': 0
-    }
-
-def catchingAttributes():
-    abilities = {
+        'Work Horse': 0,
         'Acrobatic Catches': 0,
         'Bump Buster': 0,
         'Deep Threat': 0,
@@ -198,73 +164,31 @@ def catchingAttributes():
         'Mr. 3rd Down': 0,
         'Possession Receiver': 0,
         'Soft Hands': 0,
-        'Tough in the Middle': 0
-    }
-
-    return abilities
-
-def catchingRestrictedAttributes():
-    abilities = {
-        'Route God': 0
-    }
-
-    return abilities
-
-def blockingAttributes():
-    abilities = {
+        'Tough in the Middle': 0,
+        'Route God': 0,
         'Brick Wall': 0,
         'Bulldozer': 0,
-        'Stonewall': 0
-    }
-
-    return abilities
-
-def passRushAttributes():
-    abilities = {
+        'Stonewall': 0,
         'Bull Rush': 0,
         'Club': 0,
        ' Pass Rush Bonus': 0,
         'Rip': 0,
         'Sack Master': 0,
         'Spin': 0,
-        'Swim': 0
-    }
-
-    return abilities
-
-def runDefenseAttributes():
-    abilities = {
+        'Swim': 0,
         'Reach Tackle': 0,
         'Run Coverage': 0,
         'Run Reader': 0,
         'Ball Strip': 0,
-        'Loose Ball Magnet': 0
-    }
-
-    return abilities
-
-def passCoverageAttributes():
-    abilities = {
+        'Loose Ball Magnet': 0,
         'Ball Hawk': 0,
         'Bump Master': 0,
         'Coverage Bonus': 0,
-        'Footsteps': 0
-    }
-
-    return abilities
-
-def generalDefenseAttributes():
-    abilities = {
+        'Footsteps': 0,
         'Big Hit': 0,
         'Closing Speed': 0,
         'High Helmet Tackle': 0,
-        'Wrap up Tackler': 0
-    }
-
-    return abilities
-
-def specialTeamsAttributes():
-    abilities = {
+        'Wrap up Tackler': 0,
         'Coffin Corner': 0,
         'Kick Accuracy Bonus': 0,
         'Kick Power Bonus': 0,
@@ -272,23 +196,246 @@ def specialTeamsAttributes():
         'Special Team Demon': 0
     }
 
+    return count
+
+def athleticAttributes():
+    abilities = {
+        'Quick Feet',
+        'Speed Burner',
+        'Break Away Burst',
+        'Cutback Ability',
+        'Durability Bonus',
+        'Hops',
+        'Stamina Bonus',
+        'Strength Bonus'
+    }
+
+    return abilities
+
+def quarterBackAttributes():
+    abilities = [
+        '4th Quarter Comeback',
+        'Deception',
+        'Laser Arm',
+        'Mobile QB (84 Speed)',
+        'Play Fake',
+        'Pocket Presence',
+        'QB Evade',        
+        'Scrambler',
+        'Tough as Nails',
+        'Clutch',
+        'Leadership Bonus'
+    ]
+
+    return abilities
+
+def quarterBackRestrictedAttributes():
+    abilities = [
+        'Quick Release',
+        'Rocket Arm'
+    ]
+
+    return abilities
+
+def runningBackAttributes():
+    abilities = [
+        'Ankle Breaker',
+        'Arm of Steel',
+        'Battering Ram',                
+        'Cyclone',
+        'Finesse',
+        'Finesse and Power',
+        'Goalline Dive',
+        'Power',        
+        'Scissor Kick',
+        'Secure Ball Bonus',        
+        'Stop on a Dime',
+        'Quick Feet',
+        'Speed Burner',
+        'Break Away Burst',
+        'Cutback Ability',
+        'Durability Bonus',
+        'Hops',
+        'Stamina Bonus',
+        'Strength Bonus',
+        'Return Specialist',
+        'Special Team Demon'
+    ]
+
+    return abilities
+
+def runningBackRestrictedAttributes():
+    abilities = [
+        'Branching Tackles',
+        'Work Horse'
+    ]
+
+def recieverAttributes():
+    abilities = [
+        'Acrobatic Catches',
+        'Bump Buster',
+        'Deep Threat',
+        'Magic Feet',
+        'Mr. 3rd Down',
+        'Possession Receiver',
+        'Soft Hands',
+        'Tough in the Middle',
+        'Quick Feet',
+        'Speed Burner',
+        'Break Away Burst',
+        'Cutback Ability',
+        'Durability Bonus',
+        'Hops',
+        'Stamina Bonus',
+        'Strength Bonus',
+        'Return Specialist',
+        'Special Team Demon'
+    ]
+
+    return abilities
+
+def recieverRestrictedAttributes():
+    abilities = [
+        'Route God'
+    ]
+
+    return abilities
+
+def tightEndAttributes():
+    abilities = [
+        'Acrobatic Catches',
+        'Bump Buster',
+        'Deep Threat',
+        'Magic Feet',
+        'Mr. 3rd Down',
+        'Possession Receiver',
+        'Soft Hands',
+        'Tough in the Middle',
+        'Bulldozer',
+        'Quick Feet',
+        'Speed Burner',
+        'Break Away Burst',
+        'Cutback Ability',
+        'Durability Bonus',
+        'Hops',
+        'Stamina Bonus',
+        'Strength Bonus'
+    ]
+
+    return abilities
+
+def blockingAttributes():
+    abilities = [
+        'Brick Wall',
+        'Bulldozer',
+        'Stonewall',
+        'Quick Feet',
+        'Stamina Bonus',
+        'Strength Bonus'
+    ]
+
+    return abilities
+
+def dlineAttributes():
+    abilities = {
+        'Bull Rush',
+        'Club',
+       ' Pass Rush Bonus',
+        'Rip',
+        'Sack Master',
+        'Spin',
+        'Swim',
+        'Reach Tackle',
+        'Run Coverage',
+        'Run Reader',
+        'Ball Strip',
+        'Loose Ball Magnet',
+        'Closing Speed',
+        'High Helmet Tackle',
+        'Wrap up Tackler',
+    }
+
+    return abilities
+
+def lineBackerAttributes():
+    abilities = [
+        'Reach Tackle',
+        'Run Coverage',
+        'Run Reader',
+        'Ball Strip',
+        'Loose Ball Magnet',
+        'Coverage Bonus',
+        'Footsteps',
+        'Closing Speed',
+        'High Helmet Tackle',
+        'Wrap up Tackler',
+        'Quick Feet',
+        'Speed Burner',
+        'Break Away Burst',
+        'Cutback Ability',
+        'Durability Bonus',
+        'Hops',
+        'Stamina Bonus',
+        'Strength Bonus'
+    ]
+
+    return abilities
+
+def defensiveBackAttributes():
+    abilities = [
+        'Ball Hawk',
+        'Bump Master',
+        'Coverage Bonus',
+        'Footsteps',
+        'Clutch',
+        'Big Hit',
+        'Closing Speed',
+        'High Helmet Tackle',
+        'Wrap up Tackler',
+        'Quick Feet',
+        'Speed Burner',
+        'Break Away Burst',
+        'Cutback Ability',
+        'Durability Bonus',
+        'Hops',
+        'Stamina Bonus',
+        'Strength Bonus',
+        'Soft Hands'
+    ]
+
+    return abilities
+
+def specialTeamsAttributes():
+    abilities = [
+        'Coffin Corner',
+        'Kick Accuracy Bonus',
+        'Kick Power Bonus'
+    ]
+
     return abilities
 
 def allAbilities():
     abilities = {
-        'qb': quarterBackAttributes(),
+        'QB': quarterBackAttributes(),
         'qb_restricted': quarterBackRestrictedAttributes(),
-        'running': runningBackAttributes(),
-        'running_restricted': runningBackRestrictedAttributes(),
-        'catching': catchingAttributes(),
-        'catching_restricted': catchingRestrictedAttributes(),
-        'blocking': blockingAttributes(),
-        'pass_rush': passRushAttributes(),
-        'run_defense': runDefenseAttributes(),
-        'pass_coverage': passCoverageAttributes(),
-        'general_defense': generalDefenseAttributes(),
-        'special_teams': specialTeamsAttributes(),
-        'athletic': athleticAttributes()
+        'HB': runningBackAttributes(),
+        'rb_restricted': runningBackRestrictedAttributes(),
+        'FB': runningBackAttributes(),
+        'WR': recieverAttributes(),
+        'wr_restricted': recieverRestrictedAttributes(),
+        'TE': tightEndAttributes(),
+        'T': blockingAttributes(),
+        'G': blockingAttributes(),
+        'C': blockingAttributes(),
+        'DE': dlineAttributes(),
+        'DT': dlineAttributes(),
+        'OLB': lineBackerAttributes(),
+        'ILB': lineBackerAttributes(),
+        'CB': defensiveBackAttributes(),
+        'SS': defensiveBackAttributes(),
+        'FS': defensiveBackAttributes(),
+        'K': specialTeamsAttributes(),
+        'P': specialTeamsAttributes()
     }
     
     return abilities
