@@ -5,7 +5,7 @@ import random
 # Internal Imports
 from configuration import (
     getPoints, getDefensePositions, getOffensePositions, playerCost,
-    totalAttributeCost, getTiers, allAbilities
+    totalAttributeCost, getTiers, allAbilities, abilityCount
 )
 
 
@@ -25,6 +25,7 @@ class TeamBuilder:
         self.offense_positions = getOffensePositions()
         self.defense_positions = getDefensePositions()
         self.player_attributes = allAbilities()
+        self.ability_count = abilityCount()
 
     def _tierSetup(self):
         number_of_gold_players = random.randint(2, 5)
@@ -93,59 +94,100 @@ class TeamBuilder:
         if len(abilities) == 4:
             cost = self.ability_costs[1][tier] + self.ability_costs[2][tier] + self.ability_costs[3][tier] + self.ability_costs[4][tier]
 
-        if self.points['total'] - cost > 0 or self.points[tier] - cost > 0:
+        print(f"{self.points['total_points'] - cost > 0 and self.points[tier] - cost > 0}")
+
+        if not self.points['total_points'] - cost > 0 and self.points[tier] - cost > 0:
             validated = False
             return validated
 
         for ability in abilities:
-            if self.player_attributes[ability] < 3:
+            if self.ability_count[ability] > 3:
+                print('ability count greater than 3')
                 validated = False
                 return validated
 
-        self.points['total'] -= cost
+        self.points['total_points'] -= cost
         self.points[tier] -= cost
 
         return validated
 
     def _playerBuilder(self, side, tier, position):
         while True:
-            number_of_attributes = random.randint(0, 2)
+            validated = True
+            number_of_attributes = random.randint(0, 3)
+
+            if number_of_attributes == 0:
+                abilities = []
 
             if number_of_attributes > 0:
-                if position == 'QB':
-                    attributes = random.sample(list(self.player_attributes['qb']), number_of_attributes)
+                print(position)
+                abilities = random.sample(list(self.player_attributes[position]), number_of_attributes)
+                print(abilities)
+                validated = self._abilityValidation(tier, abilities)
 
-            
+            if validated:
+                break
+
+        print(abilities)
+
+        if abilities == []:
+            player = self.Player(tier, side, position, None, None, None, None)
+
+        if len(abilities) == 1:
+            player = self.Player(tier, side, position, abilities[0], None, None, None)
+
+        if len(abilities) == 2:
+            player = self.Player(tier, side, position, abilities[0], abilities[1], None, None)
+
+        if len(abilities) == 3:
+            player = self.Player(tier, side, position, abilities[0], abilities[1], abilities[2], None)
+
+        if len(abilities) == 4:
+            player = self.Player(tier, side, position, abilities[0], abilities[1], abilities[2], abilities[3])
+        
+        print(player)
+
+        self.team.append(player)
 
     def buildTeam(self):
         players_at_tier = self._tierSetup()
 
         for tier in self.tiers:
-            players = self._playerBuilder(players_at_tier[tier])
+            players = players_at_tier[tier]
+            print(f'Number of players in {tier} tier: {players}')
             
-            offense = random.randint(1, players - 1)
-            defense = players - offense
+            if players != 0:
+                if players == 1:
+                    offense = random.randint(1, players)
+                
+                if players != 1:
+                    offense = random.randint(1, players - 1)
 
-            while True:
-                validated = False
+                defense = players - offense
 
-                offense_positions = random.sample(list(self.offense_positions), offense)
-                validated = self._positionValidation('offense', offense_positions)
+                print(f'Number on Offense: {offense}')
+                print(f'Number on Defense: {defense}')
 
-                if validated == True:
-                    break
-            
-            while True:
-                validated = False
+                while True:
+                    validated = False
 
-                defense_positions = random.sample(list(self.defense_positions), defense)
-                validated = self._positionValidation('defense', defense_positions)
+                    offense_positions = random.sample(list(self.offense_positions), offense)
+                    validated = self._positionValidation('offense', offense_positions)
 
-                if validated == True:
-                    break
-            
-            for position in offense_positions:
-                self._playerBuilder('offense', tier, position)
+                    if validated == True:
+                        break
+                
+                while True:
+                    validated = False
 
-            for position in defense_positions:
-                self._playerBuilder('defense', tier, position)
+                    defense_positions = random.sample(list(self.defense_positions), defense)
+                    validated = self._positionValidation('defense', defense_positions)
+
+                    if validated == True:
+                        break
+                
+                for position in offense_positions:
+                    self._playerBuilder('offense', tier, position)
+
+                for position in defense_positions:
+                    self._playerBuilder('defense', tier, position)
