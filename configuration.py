@@ -14,6 +14,8 @@ def getDefensePositions():
         'CB': 4,
         'SS': 1,
         'FS': 1,
+        'K': 1,
+        'P': 1
     }
 
     return positions
@@ -28,8 +30,6 @@ def getOffensePositions():
         'QB': 1,
         'FB': 1,
         'HB': 2,
-        'K': 1,
-        'P': 1
     }
 
     return positions
@@ -409,7 +409,8 @@ def specialTeamsAttributes():
     abilities = [
         'Coffin Corner',
         'Kick Accuracy Bonus',
-        'Kick Power Bonus'
+        'Kick Power Bonus',
+        'Strength Bonus',
     ]
 
     return abilities
